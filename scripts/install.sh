@@ -1,4 +1,3 @@
-cat > ~/Documents/AI/eng-partner/scripts/install.sh << 'EOF'
 #!/bin/bash
 set -e
 
@@ -26,7 +25,7 @@ load_agent() {
   cat "$PROFILES_DIR/global.md" > "$CLAUDE_DIR/CLAUDE.md"
   printf "\n---\n" >> "$CLAUDE_DIR/CLAUDE.md"
   cat "$AGENTS_DIR/$1" >> "$CLAUDE_DIR/CLAUDE.md"
-  echo "✅ $2 instalado"
+  echo "✅ $2 instalado en ~/.claude/CLAUDE.md"
 }
 
 case $choice in
@@ -36,7 +35,7 @@ case $choice in
       printf "\n---\n" >> "$CLAUDE_DIR/CLAUDE.md"
       cat "$f" >> "$CLAUDE_DIR/CLAUDE.md"
     done
-    echo "✅ Todos los agentes instalados"
+    echo "✅ Todos los agentes instalados en ~/.claude/CLAUDE.md"
     ;;
   2) load_agent "TaskDefiner.md" "TaskDefiner" ;;
   3) load_agent "ArchSimplifier.md" "ArchSimplifier" ;;
@@ -50,6 +49,3 @@ esac
 
 echo ""
 echo "Para usar: cd /tu/proyecto && claude"
-EOF
-
-chmod +x ~/Documents/AI/eng-partner/scripts/install.sh

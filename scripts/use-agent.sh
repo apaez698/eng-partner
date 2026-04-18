@@ -7,6 +7,15 @@ AGENT=$1
 
 if [ -z "$AGENT" ]; then
   echo "Uso: ./use-agent.sh [all|taskdefiner|arch|reader|reviewer|inspector|builder|doc]"
+  echo ""
+  echo "  all         → todos los agentes"
+  echo "  taskdefiner → define tareas desde requerimientos"
+  echo "  arch        → analiza y simplifica arquitectura"
+  echo "  reader      → entiende código ajeno rápido"
+  echo "  reviewer    → valida código antes del PR"
+  echo "  inspector   → diagnostica problemas en producción"
+  echo "  builder     → propone e implementa cambios"
+  echo "  doc         → documenta decisiones técnicas"
   exit 1
 fi
 
@@ -15,6 +24,7 @@ load_agent() {
   printf "\n---\n" >> "$CLAUDE_DIR/CLAUDE.md"
   cat "$AGENTS_DIR/$1" >> "$CLAUDE_DIR/CLAUDE.md"
   echo "✅ $2 activo"
+  echo "Para usar: cd /tu/proyecto && claude"
 }
 
 case $AGENT in
@@ -25,6 +35,7 @@ case $AGENT in
       cat "$f" >> "$CLAUDE_DIR/CLAUDE.md"
     done
     echo "✅ Todos los agentes activos"
+    echo "Para usar: cd /tu/proyecto && claude"
     ;;
   taskdefiner) load_agent "TaskDefiner.md" "TaskDefiner" ;;
   arch)        load_agent "ArchSimplifier.md" "ArchSimplifier" ;;
@@ -35,5 +46,3 @@ case $AGENT in
   doc)         load_agent "DocWriter.md" "DocWriter" ;;
   *) echo "❌ Agente desconocido: $AGENT" && exit 1 ;;
 esac
-
-echo "Para usar: cd /tu/proyecto && claude"
