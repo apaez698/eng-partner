@@ -15,8 +15,9 @@ echo "  5. Solo Reviewer"
 echo "  6. Solo ProdInspector"
 echo "  7. Solo Builder"
 echo "  8. Solo DocWriter"
+echo "  9. Solo Resumer"
 echo ""
-read -p "¿Qué instalar? (1-8, default: 1): " choice
+read -p "¿Qué instalar? (1-9, default: 1): " choice
 choice=${choice:-1}
 
 mkdir -p "$CLAUDE_DIR"
@@ -44,6 +45,7 @@ case $choice in
   6) load_agent "ProdInspector.md" "ProdInspector" ;;
   7) load_agent "Builder.md" "Builder" ;;
   8) load_agent "DocWriter.md" "DocWriter" ;;
+  9) load_agent "Resumer.md" "Resumer" ;;
   *) echo "❌ Opción inválida" && exit 1 ;;
 esac
 
